@@ -9,7 +9,7 @@ streamlit.text('🐔Hard-Boiled Free-Range Egg')
 streamlit.text('🥑Avacado Toast🍞')
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')   
 
-options = st.multiselect('Which beverage do you like?', ['Tea', 'Coffee','Iced Tea' ,'Diet Coke', 'Lemonade'],['Tea', 'Coffee'])
+options = streamlit.multiselect('Which beverage do you like?', ['Tea', 'Coffee','Iced Tea' ,'Diet Coke', 'Lemonade'],['Tea', 'Coffee'])
 
 my_fruit_list= pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list= my_fruit_list.set_index('Fruit')
