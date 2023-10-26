@@ -72,4 +72,4 @@ def snowflake_conn():
     
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])    
 if streamlit.button('TEST'):
-    streamlit.text(snowflake_conn())
+    streamlit.dataframe(snowflake_conn())
