@@ -44,7 +44,7 @@ def insert_row_snowflake(new_fruit):
     my_cur = my_cnx.cursor()
     query_ins="insert into pc_rivery_db.public.fruit_load_list select '"+str(new_fruit)+"' where not exists(select 1 from pc_rivery_db.public.fruit_load_list where fruit_name='"+str(new_fruit)+"')"
     my_cur.execute(query_ins)
-    return 'Thanks for adding'+new_fruit
+    return 'Thanks for adding '+new_fruit
     
 def get_fruit_load_list():
     my_cur = my_cnx.cursor()
