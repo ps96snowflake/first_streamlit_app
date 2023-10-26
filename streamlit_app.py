@@ -45,6 +45,6 @@ streamlit.dataframe(my_data_row)
 
 add_fruit_mylist = streamlit.text_input('What fruit would you like to add in list?','jackfruit')
 streamlit.write('Thanks for adding',add_fruit_mylist) 
-query_ins="insert into pc_rivery_db.public.fruit_load_list values ('"+str(add_fruit_mylist)+"')"
+query_ins="insert into pc_rivery_db.public.fruit_load_list select '"+str(add_fruit_mylist)+"' where not exists(select 1 from pc_rivery_db.public.fruit_load_list where fruit_name='"+str(add_fruit_mylist)+"')"
 #streamlit.write(query_ins) 
 my_cur.execute(query_ins)
