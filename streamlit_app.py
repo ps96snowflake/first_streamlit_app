@@ -49,8 +49,21 @@ def get_fruit_load_list():
 if streamlit.button('Get Fruit Load List'):
     streamlit.dataframe(get_fruit_laod_list())
 
-add_fruit_mylist = streamlit.text_input('What fruit would you like to add in list?','jackfruit')
-streamlit.write('Thanks for adding',add_fruit_mylist) 
-query_ins="insert into pc_rivery_db.public.fruit_load_list select '"+str(add_fruit_mylist)+"' where not exists(select 1 from pc_rivery_db.public.fruit_load_list where fruit_name='"+str(add_fruit_mylist)+"')"
-#streamlit.write(query_ins) 
-my_cur.execute(query_ins)
+def insert_row_snowflake(new_fruit):
+    with mycnx.cursor() as my_cur:
+        query_ins="insert into pc_rivery_db.public.fruit_load_list select '"+str(add_fruit_mylist)+"' where not exists(select 1 from pc_rivery_db.public.fruit_load_list where fruit_name='"+str(add_fruit_mylist)+"')"
+        #streamlit.write(query_ins) 
+        my_cur.execute(query_ins)
+        return 'Thanks for adding'+add_fruit_mylist
+
+try:
+  add_fruit_mylist = streamlit.text_input('What fruit would you like to add in list?')
+  if not add_fruit_mylist:
+    streamlit.error('Please enter a fruit to add in list.')
+  else:
+    if streamlit.button('Add Fruit in List'):
+        streamlit.write(insert_row_snowflake(add_fruit_mylist)) 
+except URLError as e:
+  streamlit.error()
+  
+
