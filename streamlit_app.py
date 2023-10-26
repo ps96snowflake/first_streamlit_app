@@ -65,11 +65,11 @@ try:
 except URLError as e:
   streamlit.error()
     
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])    
 def snowflake_conn():
     my_cur = my_cnx.cursor()
     my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
     my_data_row = my_cur.fetchall()
     streamlit.text(my_data_row)
 
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])    
 snowflake_conn()
