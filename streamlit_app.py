@@ -71,5 +71,5 @@ def snowflake_conn():
     return my_cur.fetchall()
     
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])    
-if streamlit.button('Get Fruit Load List'):
+if streamlit.button('TEST'):
     streamlit.text(snowflake_conn())
